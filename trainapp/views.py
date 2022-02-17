@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from trainapp.functions import *
 
 
 def index(request):
@@ -20,11 +20,15 @@ def search(request):
 #@app.route('/action_Search', methods =["POST"])
 def action_Search(request):
   
-  #searchTxt = request.form.get("station")
 
-  #stations = getStationNames(searchTxt)
+   searchTxt = request.GET['station']
+   print(searchTxt)
+
+   stations = getStationNames(searchTxt)
+
+   print(stations)
   #return render(request, "searchStation.html", stations=stations)
-   return render(request, "searchStation.html", stations=[])
+   return render(request, "searchStation.html", {"stations":stations})
 
 def stationInfo(request):
 
