@@ -16,7 +16,6 @@ def search(request):
    return render(request, "searchStation.html")
 
   
-
 #@app.route('/action_Search', methods =["POST"])
 def action_Search(request):
   
