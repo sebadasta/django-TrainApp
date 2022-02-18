@@ -20,18 +20,20 @@ def search(request):
 #@app.route('/action_Search', methods =["POST"])
 def action_Search(request):
   
-
    searchTxt = request.GET['station']
-   print(searchTxt)
 
    stations = getStationNames(searchTxt)
 
-   print(stations)
   #return render(request, "searchStation.html", stations=stations)
    return render(request, "searchStation.html", {"stations":stations})
 
 def stationInfo(request):
 
-  return render(request,"stationInfo")
+  StationName = request.GET['station']
+
+  entries = getStationInfo(StationName)
+
+  return render(request,"stationInfo.html",{"entries":entries,"StationName":StationName})
+
 
 

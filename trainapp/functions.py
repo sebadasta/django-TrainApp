@@ -60,3 +60,10 @@ def getStationNames(searchTxt):
       
   except:
     print("error")
+
+def getStationInfo(station):
+
+  #call func to get API Data
+  dict_data = getAPI(station)
+
+  return formatData(dict_data)

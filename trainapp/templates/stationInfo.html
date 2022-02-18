@@ -1,7 +1,7 @@
 <a style="" href="/">Back</a>
 
 {% if entries|length > 0 %}
-<h1>{{entries[0].Stationfullname}}</h1>
+<h1>{{entries.0.Stationfullname}}</h1>
 {% endif %}
 
 <ul style="list-style-type:none">
@@ -14,7 +14,5 @@
     <div>Late: {{entry.Late}} mins</div>
     <div>Traincode: {{entry.Traincode}}</div>
   </li>
-{% else %}
-  <li><em>No info found!</em></li>
 {% endfor %}
 </ul>
