@@ -2,14 +2,13 @@
 <html>
 <body>
 
-  <div style = "font-size:50px;">
-    <h2>Search</h2>
-    
+  <div style = "font-size:80px;margin-left: 25px;">
     <form action="/action_Search" method="get">
-      <label for="station">Station</label><br>
-      <input type="text" id="station" name="station" value=""><br>
+      <label for="station">Search Station</label><br>
     
-      <input type="submit" value="Search">
+      <input style = "font-size:60px;" type="text" id="station" name="station" value=""><br>
+    
+      <input style = "margin-top: 40px;font-size:50px;" type="submit" value="Search">
     </form> 
     
         
@@ -17,13 +16,13 @@
     {% for entry in stations %}
     
       <li>
-            <a style="" href="/stationInfo?station={{entry.StationCode}}">{{entry.StationDesc}}</a>
+            <a style="font-size:80px;" href="/stationInfo?station={{entry.StationCode}}">{{entry.StationDesc}}</a>
        
       </li>
     
     {% endfor %}
     </ul>
-</div>>  
+</div>
     
       
   
