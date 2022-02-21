@@ -17,7 +17,7 @@
       <div>Last location: {{entry.Lastlocation}}</div>
       <div>Exparrival: {{entry.Exparrival}}</div>
 
-      {% if {{entry.Late}} > 0 %}
+      {% if entry.Late != "0" %}
         <div style="color:red;">Late: {{entry.Late}} mins</div>
       {% else %}
         <div>Late: {{entry.Late}} mins</div>
