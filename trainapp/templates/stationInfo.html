@@ -16,9 +16,19 @@
       <div>Duein: {{entry.Duein }} min</div>
       <div>Last location: {{entry.Lastlocation}}</div>
       <div>Exparrival: {{entry.Exparrival}}</div>
-      <div>Late: {{entry.Late}} mins</div>
+
+      {% if {{entry.Late}} > 0 %}
+        <div style="color:red;">Late: {{entry.Late}} mins</div>
+      {% else %}
+        <div>Late: {{entry.Late}} mins</div>
+      {% endif %}
+      
       <div>Traincode: {{entry.Traincode}}</div>
     </li>
+    
+    {% empty %}
+    <li>Sorry, no info found!.</li>
+  
   {% endfor %}
   </ul>
 
