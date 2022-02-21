@@ -2,29 +2,30 @@
 <html>
 <body>
 
-<h2>Search</h2>
-
-<form action="/action_Search" method="get">
-  <label for="station">Station</label><br>
-  <input type="text" id="station" name="station" value=""><br>
-
-  <input type="submit" value="Search">
-</form> 
-
+  <div style = "font-size:50px;">
+    <h2>Search</h2>
     
-<ul style="list-style-type:none">
-{% for entry in stations %}
-
-  <li>
-        <a style="" href="/stationInfo?station={{entry.StationCode}}">{{entry.StationDesc}}</a>
-   
-  </li>
-
-{% endfor %}
-</ul>
-
-
-  
+    <form action="/action_Search" method="get">
+      <label for="station">Station</label><br>
+      <input type="text" id="station" name="station" value=""><br>
+    
+      <input type="submit" value="Search">
+    </form> 
+    
+        
+    <ul style="list-style-type:none">
+    {% for entry in stations %}
+    
+      <li>
+            <a style="" href="/stationInfo?station={{entry.StationCode}}">{{entry.StationDesc}}</a>
+       
+      </li>
+    
+    {% endfor %}
+    </ul>
+</div>>  
+    
+      
   
 </body>
 </html>
