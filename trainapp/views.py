@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from trainapp.functions import *
+import feedparser
 
 
 def index(request):
@@ -35,4 +36,13 @@ def stationInfo(request):
   return render(request,"stationInfo.html",{"entries":entries,"StationName":StationName})
 
 
+def rss(request):
+ NewsFeed = feedparser.parse("http://fetchrss.com/rss/6213d024c2a4f2795e6706a26213cff2590aa0520b2f7ab2.xml")
+
+ print ('Number of RSS posts :' + str(len(NewsFeed.entries)))
+
+ entry = NewsFeed.entries[0]
+ print ('Post Title :'+entry.title)
+  
+ return render(request,"rss.html",{"NewsFeed": NewsFeed.entries})
 

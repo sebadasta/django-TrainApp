@@ -25,4 +25,5 @@ urlpatterns = [
     path('search', views.search, name ='searchStation'),
     path('stationInfo', views.stationInfo, name ='stationInfo'),
     path('action_Search', views.action_Search, name ='stationInfo'),
+  path('rss', views.rss, name ='rss'),
 ]

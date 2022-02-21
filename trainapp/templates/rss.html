@@ -1,0 +1,27 @@
+
+
+<!DOCTYPE html>
+<html>
+  <body>
+
+<div style="font-size: 60px;">
+  <a style="" href="/">Back</a>
+
+  
+  <ul style="list-style-type:none">
+  {% for entry in NewsFeed %}
+    <li>
+      <h2>{{ entry.title}}</h2>
+      <div>{{entry.value}}</div>
+
+    </li>
+    
+    {% empty %}
+    <li>Sorry, no info found!</li>
+  
+  {% endfor %}
+  </ul>
+
+</div>
+  </body>
+</html>
