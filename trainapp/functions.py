@@ -1,5 +1,7 @@
 import requests
 import xmltodict
+from datetime import datetime
+
 
 Station_URL = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode="
 #Station_URL="http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc="
@@ -67,3 +69,12 @@ def getStationInfo(station):
   dict_data = getAPI(station)
 
   return formatData(dict_data)
+
+def dateFormatter(dateStr):
+
+  try:
+   return datetime.strptime(dateStr,"%Y-%m-%dT%H:%M:%S.%fZ")  
+  except:
+   return "Error"
+
+  
