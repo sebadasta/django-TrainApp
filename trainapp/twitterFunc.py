@@ -50,5 +50,13 @@ def getTweets():
     url = create_url()
     params = get_params()
     json_response = connect_to_endpoint(url, params)
-    print(json.dumps(json_response, indent=4, sort_keys=True))
+  #  print(json.dumps(json_response, indent=4, sort_keys=True))
+    print(type(json_response))
     return json.dumps(json_response, indent=4, sort_keys=True)
+
+
+def dateFormatter():
+
+  return None
+  
+

@@ -10,10 +10,10 @@ def index(request):
 
 def test(request):
   
-   tweets = getTweets()
-
-   testlist = ['asd','1q','dede', tweets]
-   return render(request, "test.html", {"testlist": testlist})
+   tweets = json.loads(getTweets())
+   print(type(tweets))
+  
+   return render(request, "test.html", {"tweets": tweets['data']})
 
 
 def search(request):
@@ -39,13 +39,10 @@ def stationInfo(request):
   return render(request,"stationInfo.html",{"entries":entries,"StationName":StationName})
 
 
-def rss(request):
- NewsFeed = feedparser.parse("http://fetchrss.com/rss/6213d024c2a4f2795e6706a26213cff2590aa0520b2f7ab2.xml")
-
- print ('Number of RSS posts :' + str(len(NewsFeed.entries)))
-
- entry = NewsFeed.entries[0]
- print ('Post Title :'+entry.title)
+def tw_feed(request):
   
- return render(request,"rss.html",{"NewsFeed": NewsFeed.entries})
+ tweets = json.loads(getTweets())
+ 
+
+ return render(request,"tw_feed.html",{"tweets": tweets['data']})
 
