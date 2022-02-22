@@ -3,13 +3,16 @@ from django.shortcuts import render
 from trainapp.functions import *
 import feedparser
 import os
+from trainapp.twitterFunc import *
 
 def index(request):
    return render(request, "index.html")
 
 def test(request):
-   token = os.environ.get("TEST") 
-   testlist = ['asd','1q','dede', token]
+  
+   tweets = getTweets()
+
+   testlist = ['asd','1q','dede', tweets]
    return render(request, "test.html", {"testlist": testlist})
 
 
