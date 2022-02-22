@@ -2,14 +2,14 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from trainapp.functions import *
 import feedparser
-
+import os
 
 def index(request):
    return render(request, "index.html")
 
 def test(request):
-
-   testlist = ['asd','1q','dede']
+   token = os.environ.get("TEST") 
+   testlist = ['asd','1q','dede', token]
    return render(request, "test.html", {"testlist": testlist})
 
 
