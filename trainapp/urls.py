@@ -26,4 +26,5 @@ urlpatterns = [
     path('stationInfo', views.stationInfo, name ='stationInfo'),
     path('action_Search', views.action_Search, name ='stationInfo'),
   path('tw_feed', views.tw_feed, name ='tw_feed'),
+  path('teststream', views.teststream, name ='test'),
 ]

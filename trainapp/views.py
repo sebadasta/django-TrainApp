@@ -4,6 +4,8 @@ from trainapp.functions import *
 import feedparser
 import os
 from trainapp.twitterFunc import *
+from trainapp.streamTest import *
+
 
 def index(request):
    return render(request, "index.html")
@@ -22,14 +24,12 @@ def search(request):
    return render(request, "searchStation.html")
 
   
-#@app.route('/action_Search', methods =["POST"])
 def action_Search(request):
   
    searchTxt = request.GET['station']
 
    stations = getStationNames(searchTxt)
 
-  #return render(request, "searchStation.html", stations=stations)
    return render(request, "searchStation.html", {"stations":stations})
 
 def stationInfo(request):
@@ -44,8 +44,13 @@ def stationInfo(request):
 def tw_feed(request):
   
  tweets = json.loads(getTweets())
+ 
  for tweet in tweets['data']:
      tweet["created_at"] = dateFormatter(tweet["created_at"])
 
  return render(request,"tw_feed.html",{"tweets": tweets['data']})
 
+def teststream(self):
+
+ givemestream()
+ return render(request,"test.html",{"tweets": []})
