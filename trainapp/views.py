@@ -4,7 +4,6 @@ from trainapp.functions import *
 import feedparser
 import os
 from trainapp.twitterFunc import *
-from trainapp.streamTest import *
 
 
 def index(request):
@@ -49,8 +48,3 @@ def tw_feed(request):
      tweet["created_at"] = dateFormatter(tweet["created_at"])
 
  return render(request,"tw_feed.html",{"tweets": tweets['data']})
-
-def teststream(self):
-
- givemestream()
- return render(request,"test.html",{"tweets": []})
