@@ -3,4 +3,4 @@ gunicorn
 django-heroku
 requests
 xmltodict
-feedparser
+schedule

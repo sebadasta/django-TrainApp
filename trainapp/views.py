@@ -1,7 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from trainapp.functions import *
-import feedparser
 import os
 from trainapp.twitterFunc import *
 
