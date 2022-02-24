@@ -1,6 +1,5 @@
 Cosas para seguir:
 
+1)Si no hubo nuevo tweet en la ultima hora no mandar Notification
 
-1)Crear metodo que busca palabras en los ultimos tweets buscando problemas y si hay algo me manda una push.
-
-Investigar Push Notifications
+2) Ver si vale la pena hacer PIN enun tren y recibir notificaciones cada tantos minutos para saber donde esta

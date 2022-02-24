@@ -1,7 +1,7 @@
 import requests
 from urllib import request, parse
 import xmltodict
-from datetime import datetime
+from datetime import datetime, timedelta
 from trainapp.twitterFunc import *
 import re
 import os
@@ -84,20 +84,35 @@ def dateFormatter(dateStr):
 def checkDartIssues():
   PUSH_KEY = os.environ.get("PUSH_KEY")
   PUSH_URL = os.environ.get("PUSH_URL")
-  #bearer_token = os.environ.get("BEARER_TOKEN")
+  sendPushNotification = False
+  
+  tweets = json.loads(getTweets())
 
-  
-  tweets = getTweets()
+  for tweet in tweets['data'][:2]:
+    
+    tweet["created_at"] = dateFormatter(tweet["created_at"])
+    
+    importantText = re.search("\W*(issue|delay|interruption|suspended|problem|cancel)\W*", tweet["text"], re.IGNORECASE)
+    
+    if tweet["created_at"] > datetime.now() - timedelta(hours=5) and importantText is not None:
+      
+      sendPushNotification = True
 
-  x = re.search("\W*(issue|delay|interruption|suspended|problem|block|cancel)\W*", tweets, re.IGNORECASE)
-
-  data = parse.urlencode({'key': PUSH_KEY, 'title': 'Train Alert!', 'msg': 'Check Dart Twitter, something is wrong', 'event': 'Dart Issue'}).encode()
+  if sendPushNotification:
+    
+    data = parse.urlencode({'key': PUSH_KEY, 'title': 'Train Alert!', 'msg': 'Check Dart Twitter, something is wrong', 'event': 'Dart Issue'}).encode()
+      
+    req = request.Request(PUSH_URL, data=data)
+      
+    request.urlopen(req)
+    
+    print("Notification Sent")  
+    
+  else:
+    print("No Notification Sent")
+      
+    
   
-  req = request.Request(PUSH_URL, data=data)
-  
-  request.urlopen(req)
-  
-  #print(x.string)
   
 
   
