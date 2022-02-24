@@ -1,6 +1,6 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-sched = BlockingScheduler()
+sched = BlockingScheduler(timezone="Europe/Dublin")
 
 #@sched.scheduled_job('interval', minutes=1)
 #def timed_job():
