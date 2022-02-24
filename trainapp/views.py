@@ -3,9 +3,12 @@ from django.shortcuts import render
 from trainapp.functions import *
 import os
 from trainapp.twitterFunc import *
+from trainapp.scheduler import *
+
 
 
 def index(request):
+   startScheduler()
    return render(request, "index.html")
 
 def test(request):

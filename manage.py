@@ -3,8 +3,10 @@
 import os
 import sys
 
+
 ALLOWED_HOSTS = ['*']
 def main():
+      
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'trainapp.settings')
     try:
         from django.core.management import execute_from_command_line

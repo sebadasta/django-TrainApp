@@ -1,7 +1,8 @@
 import requests
 import xmltodict
 from datetime import datetime
-
+from trainapp.twitterFunc import *
+import re
 
 Station_URL = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode="
 #Station_URL="http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc="
@@ -76,5 +77,15 @@ def dateFormatter(dateStr):
    return datetime.strptime(dateStr,"%Y-%m-%dT%H:%M:%S.%fZ")  
   except:
    return "Error"
+
+
+def checkDartIssues():
+  
+  tweets = json.loads(getTweets())
+
+  
+  #x = re.search("\s", tweets)
+  #test = tweets.
+  
 
   
