@@ -1,8 +1,10 @@
 import requests
+from urllib import request, parse
 import xmltodict
 from datetime import datetime
 from trainapp.twitterFunc import *
 import re
+
 
 Station_URL = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode="
 #Station_URL="http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc="
@@ -81,11 +83,18 @@ def dateFormatter(dateStr):
 
 def checkDartIssues():
   
-  tweets = json.loads(getTweets())
+  tweets = getTweets()
 
+  x = re.search("\W*(issue|delay|interruption|suspended|problem|block|signal|cancel|dart)\W*", tweets, re.IGNORECASE)
+
+  data = parse.urlencode({'key': 'yR3d2y', 'title': 'Train Alert!', 'msg': 'Check Dart Twitter, something is wrong', 'event': 'Dart Issue'}).encode()
   
-  #x = re.search("\s", tweets)
-  #test = tweets.
+  req = request.Request("https://api.simplepush.io/send", data=data)
+  
+  request.urlopen(req)
+  
+  #print(x.string)
+
   
 
   

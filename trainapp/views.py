@@ -9,6 +9,7 @@ from trainapp.scheduler import *
 
 def index(request):
    #startScheduler()
+   #checkDartIssues()
    return render(request, "index.html")
 
 def test(request):
