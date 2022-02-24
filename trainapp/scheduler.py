@@ -11,9 +11,9 @@ def scheduled_job():
   print('This job is run on 0/15 8-23 * * 1-5')
 
 
-sched.start()
-#def startScheduler():
+#sched.start()
+def startScheduler():
     
- # if sched.state != 1:
-  #  sched.start()
+  if sched.state != 1:
+    sched.start()
 
