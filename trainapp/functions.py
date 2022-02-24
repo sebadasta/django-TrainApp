@@ -4,6 +4,7 @@ import xmltodict
 from datetime import datetime
 from trainapp.twitterFunc import *
 import re
+import os
 
 Station_URL = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode="
 #Station_URL="http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc="
@@ -81,14 +82,18 @@ def dateFormatter(dateStr):
 
 
 def checkDartIssues():
+  PUSH_KEY = os.environ.get("PUSH_KEY")
+  PUSH_URL = os.environ.get("PUSH_URL")
+  #bearer_token = os.environ.get("BEARER_TOKEN")
+
   
   tweets = getTweets()
 
-  x = re.search("\W*(issue|delay|interruption|suspended|problem|block|signal|cancel|dart)\W*", tweets, re.IGNORECASE)
+  x = re.search("\W*(issue|delay|interruption|suspended|problem|block|cancel)\W*", tweets, re.IGNORECASE)
 
-  data = parse.urlencode({'key': 'yR3d2y', 'title': 'Train Alert!', 'msg': 'Check Dart Twitter, something is wrong', 'event': 'Dart Issue'}).encode()
+  data = parse.urlencode({'key': PUSH_KEY, 'title': 'Train Alert!', 'msg': 'Check Dart Twitter, something is wrong', 'event': 'Dart Issue'}).encode()
   
-  req = request.Request("https://api.simplepush.io/send", data=data)
+  req = request.Request(PUSH_URL, data=data)
   
   request.urlopen(req)
   

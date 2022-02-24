@@ -2,6 +2,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 from trainapp.functions import *
 
 
+
 sched = BlockingScheduler(timezone="Europe/Dublin")
 
 #@sched.scheduled_job('interval', minutes=1)
