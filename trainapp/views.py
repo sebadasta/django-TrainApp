@@ -8,7 +8,7 @@ from trainapp.scheduler import *
 
 
 def index(request):
-   startScheduler()
+   #startScheduler()
    return render(request, "index.html")
 
 def test(request):
