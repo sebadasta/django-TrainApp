@@ -10,7 +10,7 @@ bearer_token = os.environ.get("BEARER_TOKEN")
 def create_url():
     # Replace with user ID below
     user_id = os.environ.get("TW_USER_ID")
-    return "https://api.twitter.com/2/users/{}/tweets?exclude=replies".format(user_id)
+    return "https://api.twitter.com/2/users/{}/tweets?exclude=replies&max_results=5".format(user_id)
 
 
 def get_params():

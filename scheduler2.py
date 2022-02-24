@@ -1,4 +1,6 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
+from trainapp.functions import *
+
 
 sched = BlockingScheduler(timezone="Europe/Dublin")
 
@@ -8,6 +10,7 @@ sched = BlockingScheduler(timezone="Europe/Dublin")
 
 @sched.scheduled_job('cron',id="job_1", day_of_week='mon-fri', hour='8-23', minute='0/15')
 def scheduled_job():
+  checkDartIssues()
   print('This job is run on 0/15 8-23 * * 1-5')
 
 sched.start()  
