@@ -6,4 +6,6 @@ Cosas para seguir:
 
 3) Hacer Crons para fin de semana
 
-4) refactor code
+4) usar mejores templates HTML para no repetir el Body
+
+5) refactor code
