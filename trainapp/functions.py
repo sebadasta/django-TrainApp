@@ -94,7 +94,7 @@ def checkDartIssues():
     
     tweet["created_at"] = dateFormatter(tweet["created_at"])
     
-    importantText = re.search("\W*(issue|delay|interruption|suspended|cancel|southbound|northbound|Bray|Malahide|Howth|Greystone)\W*", tweet["text"], re.IGNORECASE)
+    importantText = re.search("\W*(southbound|northbound|Bray|Malahide|Howth|Greystone|connolly)\W*", tweet["text"], re.IGNORECASE)
     
     if tweet["created_at"] > datetime.now() - timedelta(hours=1) and importantText is not None:
       
