@@ -84,7 +84,9 @@ def dateFormatter(dateStr):
 def checkDartIssues():
   PUSH_KEY = os.environ.get("PUSH_KEY")
   PUSH_URL = os.environ.get("PUSH_URL")
+  
   sendPushNotification = False
+  matchedText = ""
   
   tweets = json.loads(getTweets())
 
@@ -92,21 +94,25 @@ def checkDartIssues():
     
     tweet["created_at"] = dateFormatter(tweet["created_at"])
     
-    importantText = re.search("\W*(issue|delay|interruption|suspended|problem|cancel)\W*", tweet["text"], re.IGNORECASE)
+    importantText = re.search("\W*(issue|delay|interruption|suspended|cancel|southbound|northbound|Bray|Malahide|Howth|Greystone)\W*", tweet["text"], re.IGNORECASE)
     
-    if tweet["created_at"] > datetime.now() - timedelta(hours=2) and importantText is not None:
+    if tweet["created_at"] > datetime.now() - timedelta(hours=1) and importantText is not None:
       
       sendPushNotification = True
+      matchedText = tweet["text"]
+      break
 
   if sendPushNotification:
     
-    data = parse.urlencode({'key': PUSH_KEY, 'title': 'Train Alert!', 'msg': 'Check Dart Twitter, something is wrong', 'event': 'Dart Issue'}).encode()
+    data = parse.urlencode({'key': PUSH_KEY, 'title': 'Train Alert!', 'msg': matchedText, 'event': 'Dart Issue'}).encode()
       
     req = request.Request(PUSH_URL, data=data)
       
     request.urlopen(req)
     
-    print("Notification Sent")  
+    print("Notification Sent \n")
+    print("For Text: /n")
+    print(matchedText)
     
   else:
     print("No Notification Sent")
