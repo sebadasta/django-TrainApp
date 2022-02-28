@@ -46,7 +46,7 @@ a:active {
         <div>Late: {{entry.Late}} mins</div>
       {% endif %}
       
-      <div>Traincode: {{entry.Traincode}}</div>
+      <div>Traincode: <a href="shortcuts://run-shortcut?name=TrainAlert">{{entry.Traincode}}</a></div>
     </li>
     
     {% empty %}
