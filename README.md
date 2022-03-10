@@ -1,11 +1,9 @@
 Cosas para seguir:
 
-1) mejorar htmls de las otras views
+1) Integracion con ALEXA
 
-2) Ver si vale la pena hacer PIN enun tren y recibir notificaciones cada tantos minutos para saber donde esta
+2) Hacer PIN en un tren y recibir notificaciones cada tantos minutos para saber donde esta. Usando Shortcuts.
+
+Esto esta listo, la logica tendria que estar en el shortcut de iOS.
 
 3) Hacer Crons para fin de semana
-
-4) usar mejores templates HTML para no repetir el Body
-
-5) refactor code
