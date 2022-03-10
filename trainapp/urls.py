@@ -17,6 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
+from .DartSkill import skill
+from django_ask_sdk.skill_adapter import SkillAdapter
+
+my_skill_view = SkillAdapter.as_view(
+    skill=skill)
+
 #path('path', method.func, name='html file')
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +32,6 @@ urlpatterns = [
     path('stationInfo', views.stationInfo, name ='stationInfo'),
     path('action_Search', views.action_Search, name ='stationInfo'),
   path('tw_feed', views.tw_feed, name ='tw_feed'),
+  path('algo', my_skill_view, name='index'),
 
 ]

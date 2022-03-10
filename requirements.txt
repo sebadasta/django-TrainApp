@@ -4,3 +4,4 @@ django-heroku
 requests
 xmltodict
 apscheduler
+django-ask-sdk
