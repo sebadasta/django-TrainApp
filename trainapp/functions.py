@@ -130,27 +130,32 @@ def Alexa_getStationInfo(slot):
         direction = "Southbound"
 
   trains_inStation = [row for row in data if row["Direction"]== direction]
-  print(trains_inStation)
+
   Speech = Alexa_StationInfo_createSpeech(trains_inStation)
       
   return Speech
 
 def Alexa_StationInfo_createSpeech(data):
   
-  speech = "Tenemos... "
+  speech = "Tenemos."
 
   for train in data:
-    print(train)
+
     if train['Lastlocation'] == None:
       lastLocation = "está en el limbo"
       
     else:
       lastLocation = train['Lastlocation']
+      lastLocation = lastLocation.replace("Arrived", "Llegó a")
       
+      lastLocation = lastLocation.replace("Departed", "Salió de ")
+      
+    
     speech = speech + " " + \
-             "Tren a " + train['Destination'] + ", " + \
-             "en: " + str(train['Duein']) + " minutos, " +\
-             "el tren: " + lastLocation + ", "
+             "Tren " + train['Traincode'] +\
+             " a " + train['Destination'] + " " + \
+             "en " + str(train['Duein']) + " minutos. " +\
+             "el tren " + lastLocation + ". "
   
   return speech
   

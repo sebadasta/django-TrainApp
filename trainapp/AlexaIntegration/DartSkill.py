@@ -5,7 +5,13 @@ from ask_sdk_core.utils import is_request_type, is_intent_name
 from ask_sdk_model import Response
 from ask_sdk_model.slu.entityresolution import StatusCode
 from trainapp.functions import *
+import random
 
+speechList = ["No se entiende lo que decís",
+             "Hablá claro!",
+             "Modulá, por favor",
+             "Avisáme cuando puedas hablar claro",
+             "Ponele voluntad!"]
 
 sb = SkillBuilder()
 
@@ -34,22 +40,22 @@ class KilbarrackInfoIntentHandler(AbstractRequestHandler):
 
         slots = handler_input.request_envelope.request.intent.slots
         
-        #try:
-        if slots['destino'].resolutions.resolutions_per_authority[0].status.code == StatusCode.ER_SUCCESS_MATCH:
-            
-            direction = slots['destino'].value
-
-            Station_Info = Alexa_getStationInfo(direction)
-
-            print(Station_Info)
+        try:
+          if slots['destino'].resolutions.resolutions_per_authority[0].status.code == StatusCode.ER_SUCCESS_MATCH:
+              
+              direction = slots['destino'].value
   
-            speech = ("{}.".format(Station_Info))
+              Station_Info = Alexa_getStationInfo(direction)
   
-        else:
-            speech = "I'm not sure what your favorite color is, please try again"
-             
-        #except:    
-         #speech = "no slot"
+              print(Station_Info)
+    
+              speech = ("{}".format(Station_Info))
+    
+          else:
+              speech = random.choice(speechList)
+               
+        except:   
+         speech = random.choice(speechList)
           
         handler_input.response_builder.speak(speech)
         return handler_input.response_builder.response
