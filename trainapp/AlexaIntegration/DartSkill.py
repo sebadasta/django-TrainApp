@@ -23,7 +23,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speech = "Funciona papa!"
+        speech = "Funciona papá. Vamos les píbis A.T.R."
         handler_input.response_builder.speak(speech)
         return handler_input.response_builder.response
 
