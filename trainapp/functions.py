@@ -119,6 +119,38 @@ def checkDartIssues():
       
     
   
-  
+def Alexa_getStationInfo(slot):
+  #<Direction>Northbound</Direction>
+  data = getStationInfo('KBRCK')
 
+  if slot == "norte":  
+    direction = "Northbound"
+
+  elif slot == "sur":
+        direction = "Southbound"
+
+  trains_inStation = [row for row in data if row["Direction"]== direction]
+  print(trains_inStation)
+  Speech = Alexa_StationInfo_createSpeech(trains_inStation)
+      
+  return Speech
+
+def Alexa_StationInfo_createSpeech(data):
+  
+  speech = "Tenemos... "
+
+  for train in data:
+    print(train)
+    if train['Lastlocation'] == None:
+      lastLocation = "está en el limbo"
+      
+    else:
+      lastLocation = train['Lastlocation']
+      
+    speech = speech + " " + \
+             "Tren a " + train['Destination'] + ", " + \
+             "en: " + str(train['Duein']) + " minutos, " +\
+             "el tren: " + lastLocation + ", "
+  
+  return speech
   

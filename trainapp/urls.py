@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
-from .DartSkill import skill
+from .AlexaIntegration.DartSkill import skill
 from django_ask_sdk.skill_adapter import SkillAdapter
 
 my_skill_view = SkillAdapter.as_view(

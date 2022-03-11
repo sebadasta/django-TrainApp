@@ -3,6 +3,9 @@ from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.utils import is_request_type, is_intent_name
 from ask_sdk_model import Response
+from ask_sdk_model.slu.entityresolution import StatusCode
+from trainapp.functions import *
+
 
 sb = SkillBuilder()
 
@@ -20,26 +23,45 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
 # Other skill components here ....
 
-class TrainInfoIntentHandler(AbstractRequestHandler):
-    """Handler for TrainInfoIntent."""
+class KilbarrackInfoIntentHandler(AbstractRequestHandler):
+    """Handler for KilbarrackInfoIntent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return is_intent_name("TrainInfoIntent")(handler_input)
+        return is_intent_name("KilbarrackInfoIntent")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speech = "TrainInfoIntent funciona"
+
+        slots = handler_input.request_envelope.request.intent.slots
+        
+        #try:
+        if slots['destino'].resolutions.resolutions_per_authority[0].status.code == StatusCode.ER_SUCCESS_MATCH:
+            
+            direction = slots['destino'].value
+
+            Station_Info = Alexa_getStationInfo(direction)
+
+            print(Station_Info)
+  
+            speech = ("{}.".format(Station_Info))
+  
+        else:
+            speech = "I'm not sure what your favorite color is, please try again"
+             
+        #except:    
+         #speech = "no slot"
+          
         handler_input.response_builder.speak(speech)
         return handler_input.response_builder.response
 
 
-      
+
 # Register all handlers, interceptors etc.
 # For eg : sb.add_request_handler(LaunchRequestHandler())
 
 
 sb.add_request_handler(LaunchRequestHandler())
-sb.add_request_handler(TrainInfoIntentHandler())
+sb.add_request_handler(KilbarrackInfoIntentHandler())
 
 
 skill = sb.create()
