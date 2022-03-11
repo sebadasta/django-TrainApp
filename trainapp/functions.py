@@ -137,7 +137,7 @@ def Alexa_getStationInfo(slot):
 
 def Alexa_StationInfo_createSpeech(data):
   
-  speech = "Tenemos."
+  speech = ""
 
   for train in data:
 
@@ -152,8 +152,7 @@ def Alexa_StationInfo_createSpeech(data):
       
     
     speech = speech + " " + \
-             "Tren " + train['Traincode'] +\
-             " a " + train['Destination'] + " " + \
+             "Tren a " + train['Destination'] + " " + \
              "en " + str(train['Duein']) + " minutos. " +\
              "el tren " + lastLocation + ". "
   

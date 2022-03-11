@@ -47,9 +47,8 @@ class KilbarrackInfoIntentHandler(AbstractRequestHandler):
   
               Station_Info = Alexa_getStationInfo(direction)
   
-              print(Station_Info)
     
-              speech = ("{}".format(Station_Info))
+              speech = ("Trenes pal {0}.{1}".format(direction,Station_Info))
     
           else:
               speech = random.choice(speechList)
