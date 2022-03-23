@@ -32,6 +32,6 @@ urlpatterns = [
     path('stationInfo', views.stationInfo, name ='stationInfo'),
     path('action_Search', views.action_Search, name ='stationInfo'),
   path('tw_feed', views.tw_feed, name ='tw_feed'),
-  path('algo', my_skill_view, name='index'),
+  path('alexa_skill', my_skill_view, name='index'),
 
 ]
