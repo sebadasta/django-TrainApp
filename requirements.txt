@@ -1,4 +1,3 @@
-python-environ 0.4.54
 django
 gunicorn
 django-heroku
