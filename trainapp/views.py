@@ -8,7 +8,7 @@ from scheduler import *
 
 
 def index(request):
-   #startScheduler()
+   startScheduler()
    #checkDartIssues()
    return render(request, "index.html")
 
