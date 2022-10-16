@@ -96,7 +96,7 @@ def checkDartIssues():
     
     importantText = re.search("\W*(issue|delay|interruption|suspended|cancel|southbound|northbound|Bray|Malahide|Howth|Greystone)\W*", tweet["text"], re.IGNORECASE)
     
-    if tweet["created_at"] > datetime.now() - timedelta(minutes=15) and importantText is not None:
+    if tweet["created_at"] > datetime.now() - timedelta(minutes=360) and importantText is not None:
       
       sendPushNotification = True
       matchedText = tweet["text"]

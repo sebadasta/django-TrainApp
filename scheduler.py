@@ -10,7 +10,7 @@ def timed_job():
 @sched.scheduled_job('cron',id="job_1", day_of_week='mon-sun', hour='8-23', minute='0/5')
 def scheduled_job():
   #checkDartIssues()
-  print('This job is run on 0/15 8-23 * * 1-7')
+  print('This job is run on 0/5 8-23 * * 1-7')
 
 
 
