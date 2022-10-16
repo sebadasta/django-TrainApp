@@ -3,12 +3,12 @@ from django.shortcuts import render
 from trainapp.functions import *
 import os
 from trainapp.twitterFunc import *
-from trainapp.scheduler import *
+from scheduler import *
 
 
 
 def index(request):
-   #startScheduler()
+   startScheduler()
    #checkDartIssues()
    return render(request, "index.html")
 
