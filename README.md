@@ -1,10 +1,7 @@
 Cosas para seguir:
 
+1) Poner Env variable para definir las palabras importantes para las PUSH Notifications de Twitter. Tambien definir un Default {TW_SEARCH_RELEVANT_STRING}
+2) Crear un cron para hacer ping al PROD server (Render en este caso)
+3) Crear una Env Variable para setear el cron job para las PUSH Notifications de Tw.
+4) Poner Env variable para definir las palabras NO importantes para las PUSH Notifications de Twitter. Tambien definir un Default {TW_SEARCH_NON_RELEVANT_STRING}
 
-1) Hacer PIN en un tren y recibir notificaciones cada tantos minutos para saber donde esta. Usando Shortcuts.
-
-Esto esta listo, la logica tendria que estar en el shortcut de iOS.
-
-2) Hacer Crons para fin de semana
-
-3) Ver si se me ocurre algo para detectar cuando estoy mirando la estacion equivocada...Location o algo asi.
