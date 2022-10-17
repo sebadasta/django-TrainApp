@@ -1,10 +1,6 @@
-Cosas para seguir:
+This Branch is for Local Deployment. 
 
+Free hosting services usually sleep their servers after 15 mins of inactivity 
+and that prevents the Cron Jobs to run as expected.
 
-1) Hacer PIN en un tren y recibir notificaciones cada tantos minutos para saber donde esta. Usando Shortcuts.
-
-Esto esta listo, la logica tendria que estar en el shortcut de iOS.
-
-2) Hacer Crons para fin de semana
-
-3) Ver si se me ocurre algo para detectar cuando estoy mirando la estacion equivocada...Location o algo asi.
+So this branch can be deployed on a home server and the APScheduler Background Job will keep running.
