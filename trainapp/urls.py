@@ -21,7 +21,7 @@ from .AlexaIntegration.DartSkill import skill
 from django_ask_sdk.skill_adapter import SkillAdapter
 
 my_skill_view = SkillAdapter.as_view(
-    skill=skill)
+    skill=skill,verify_signature=False)
 
 #path('path', method.func, name='html file')
 urlpatterns = [
