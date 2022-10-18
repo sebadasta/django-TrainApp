@@ -7,6 +7,13 @@ sched = BackgroundScheduler(timezone="Europe/Dublin")
 #def timed_job():
  # print('This job is run every one minutes.')
 
+@sched.scheduled_job('interval', minutes=10)
+def check_ping():
+  response = requests.get("https://django-tranapp.onrender.com")
+  print(response.status_code)
+
+
+
 @sched.scheduled_job('cron',id="job_1", day_of_week='mon-sun', hour='8-23', minute='0/10')
 def scheduled_job():
   checkDartIssues()
