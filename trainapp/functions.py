@@ -82,6 +82,13 @@ def dateFormatter(dateStr):
 
 
 def checkDartIssues():
+  # Get TW environment variables & replace them with empty string if no Env Variable is missing
+  TW_SEARCH_RELEVANT_STRING = os.environ.get('TW_SEARCH_RELEVANT_STRING')
+  TW_SEARCH_NON_RELEVANT_STRING = os.environ.get('TW_SEARCH_NON_RELEVANT_STRING')
+
+  TW_SEARCH_RELEVANT_STRING = "" if TW_SEARCH_RELEVANT_STRING is None else TW_SEARCH_RELEVANT_STRING
+  TW_SEARCH_NON_RELEVANT_STRING = "" if TW_SEARCH_NON_RELEVANT_STRING is None else TW_SEARCH_NON_RELEVANT_STRING
+  
   PUSH_KEY = os.environ.get("PUSH_KEY")
   PUSH_URL = os.environ.get("PUSH_URL")
   
@@ -93,10 +100,12 @@ def checkDartIssues():
   for tweet in tweets['data'][:2]:
     
     tweet["created_at"] = dateFormatter(tweet["created_at"])
+
+    importantText = re.search("\W*("+TW_SEARCH_RELEVANT_STRING+")\W*", tweet["text"], re.IGNORECASE)
+    notRelevantText = re.search("\W*("+TW_SEARCH_NON_RELEVANT_STRING+")\W*", tweet["text"], re.IGNORECASE)
+
     
-    importantText = re.search("\W*(issue|delay|interruption|suspended|cancel|southbound|northbound|Bray|Malahide|Howth|Greystone)\W*", tweet["text"], re.IGNORECASE)
-    
-    if tweet["created_at"] > datetime.now() - timedelta(minutes=10) and importantText is not None:
+    if tweet["created_at"] > datetime.now() - timedelta(minutes=10) and importantText is not None and notRelevantText is None:
       
       sendPushNotification = True
       matchedText = tweet["text"]
@@ -157,4 +166,3 @@ def Alexa_StationInfo_createSpeech(data):
              "el tren " + lastLocation + ". "
   
   return speech
-  
