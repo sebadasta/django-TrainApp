@@ -3,6 +3,7 @@ from urllib import request, parse
 import xmltodict
 from datetime import datetime, timedelta
 from trainapp.twitterFunc import *
+from trainapp.pushNotifications import *
 import re
 import os
 
@@ -89,13 +90,13 @@ def checkDartIssues():
   TW_SEARCH_RELEVANT_STRING = "" if TW_SEARCH_RELEVANT_STRING is None else TW_SEARCH_RELEVANT_STRING
   TW_SEARCH_NON_RELEVANT_STRING = "" if TW_SEARCH_NON_RELEVANT_STRING is None else TW_SEARCH_NON_RELEVANT_STRING
   
-  #SIMPLE PUSH IO Credentials (Just 100 Push Notifications per month)
+ """  #SIMPLE PUSH IO Credentials (Just 100 Push Notifications per month)
   PUSH_KEY = os.environ.get("PUSH_KEY")
   PUSH_URL = os.environ.get("PUSH_URL")
 
   #PUSHED.CO Credentials (1000 Push Notifications per month)
   PUSH_APP_KEY = os.environ.get("PUSH_APP_KEY")
-  PUSH_APP_SECRET = os.environ.get("PUSH_APP_SECRET")
+  PUSH_APP_SECRET = os.environ.get("PUSH_APP_SECRET") """
   
   sendPushNotification = False
   matchedText = ""
@@ -118,19 +119,7 @@ def checkDartIssues():
 
   if sendPushNotification:
     
-    #data = parse.urlencode({'key': PUSH_KEY, 'title': 'Train Alert!', 'msg': matchedText, 'event': 'Dart Issue'}).encode()
-      
-    #req = request.Request(PUSH_URL, data=data)
-      
-    #request.urlopen(req)
-    payload = {
-    "app_key": PUSH_APP_KEY,
-    "app_secret": PUSH_APP_SECRET,
-    "target_type": "app",
-    "content": matchedText
-    }
-
-    r = requests.post("https://api.pushed.co/1/push", data=payload)
+    send_PushNotification(matchedText)
     
     print("Notification Sent \n")
     print("For Text: /n")

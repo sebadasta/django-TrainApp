@@ -5,9 +5,10 @@ sched = BackgroundScheduler(timezone="Europe/Dublin")
 
 PING_PROD_URL = os.environ.get('PING_PROD_URL')
 
-""" @sched.scheduled_job('interval', minutes=1)
+@sched.scheduled_job('interval', minutes=1)
 def timed_job():
-  print('This job is run every one minutes.') """
+  send_PushNotification("1 min job test")
+  print('This job is run every one minutes.')
   
 @sched.scheduled_job('interval', minutes=10)
 def check_ping():
@@ -25,5 +26,6 @@ def scheduled_job():
 
 def startScheduler():  
   if sched.state != 1:
+    print("Starting Sched jobs")
     sched.start()
   
