@@ -2,25 +2,16 @@ from apscheduler.schedulers.background  import BackgroundScheduler
 from trainapp.functions import *
 
 sched = BackgroundScheduler(timezone="Europe/Dublin")
-PUSH_APP_KEY = os.environ.get("PUSH_APP_KEY")
-PUSH_APP_SECRET = os.environ.get("PUSH_APP_SECRET")
 
-@sched.scheduled_job('interval', minutes=1)
+PING_PROD_URL = os.environ.get('PING_PROD_URL')
+
+""" @sched.scheduled_job('interval', minutes=1)
 def timed_job():
-  print('This job is run every one minutes.')
-  payload = {
-  "app_key": PUSH_APP_KEY,
-  "app_secret": PUSH_APP_SECRET,
-  "target_type": "app",
-  "content": "This is a test from Dart-App."
-  }
-
-  r = requests.post("https://api.pushed.co/1/push", data=payload)  
+  print('This job is run every one minutes.') """
   
-
 @sched.scheduled_job('interval', minutes=10)
 def check_ping():
-  response = requests.get("https://django-tranapp.onrender.com")
+  response = requests.get(PING_PROD_URL)
   print(response.status_code)
 
 
@@ -32,8 +23,7 @@ def scheduled_job():
 
 
 
-def startScheduler():
-    
+def startScheduler():  
   if sched.state != 1:
     sched.start()
   
