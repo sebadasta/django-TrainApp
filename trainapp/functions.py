@@ -91,6 +91,9 @@ def checkDartIssues():
   
   PUSH_KEY = os.environ.get("PUSH_KEY")
   PUSH_URL = os.environ.get("PUSH_URL")
+
+  PUSH_APP_KEY = os.environ.get("PUSH_APP_KEY")
+  PUSH_APP_SECRET = os.environ.get("PUSH_APP_SECRET")
   
   sendPushNotification = False
   matchedText = ""
@@ -113,11 +116,19 @@ def checkDartIssues():
 
   if sendPushNotification:
     
-    data = parse.urlencode({'key': PUSH_KEY, 'title': 'Train Alert!', 'msg': matchedText, 'event': 'Dart Issue'}).encode()
+    #data = parse.urlencode({'key': PUSH_KEY, 'title': 'Train Alert!', 'msg': matchedText, 'event': 'Dart Issue'}).encode()
       
-    req = request.Request(PUSH_URL, data=data)
+    #req = request.Request(PUSH_URL, data=data)
       
-    request.urlopen(req)
+    #request.urlopen(req)
+    payload = {
+    "app_key": PUSH_APP_KEY,
+    "app_secret": PUSH_APP_SECRET,
+    "target_type": "app",
+    "content": "This is a test from Dart-App."
+    }
+
+    r = requests.post("https://api.pushed.co/1/push", data=payload)
     
     print("Notification Sent \n")
     print("For Text: /n")
