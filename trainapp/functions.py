@@ -90,13 +90,6 @@ def checkDartIssues():
   TW_SEARCH_RELEVANT_STRING = "" if TW_SEARCH_RELEVANT_STRING is None else TW_SEARCH_RELEVANT_STRING
   TW_SEARCH_NON_RELEVANT_STRING = "" if TW_SEARCH_NON_RELEVANT_STRING is None else TW_SEARCH_NON_RELEVANT_STRING
   
- """  #SIMPLE PUSH IO Credentials (Just 100 Push Notifications per month)
-  PUSH_KEY = os.environ.get("PUSH_KEY")
-  PUSH_URL = os.environ.get("PUSH_URL")
-
-  #PUSHED.CO Credentials (1000 Push Notifications per month)
-  PUSH_APP_KEY = os.environ.get("PUSH_APP_KEY")
-  PUSH_APP_SECRET = os.environ.get("PUSH_APP_SECRET") """
   
   sendPushNotification = False
   matchedText = ""

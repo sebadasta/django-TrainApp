@@ -8,7 +8,7 @@ PING_PROD_URL = os.environ.get('PING_PROD_URL')
 @sched.scheduled_job('interval', minutes=1)
 def timed_job():
   send_PushNotification("1 min job test")
-  print('This job is run every one minutes.')
+  print('This job is run every one minute.')
   
 @sched.scheduled_job('interval', minutes=10)
 def check_ping():
