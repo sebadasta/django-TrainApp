@@ -23,8 +23,16 @@ PUSH_URL = os.environ.get("PUSH_URL")
 PUSH_APP_KEY = os.environ.get("PUSH_APP_KEY")
 PUSH_APP_SECRET = os.environ.get("PUSH_APP_SECRET")
 
+def check_flags():
+    # Check if enable_notifications is enabled
+    pushNotifications_is_enabled = flags.is_feature_enabled("enable_notifications")
+    simplePush_isEnabled = flags.is_feature_enabled("enable_simplepush")
+
 
 def send_PushNotification(matchedText):
+
+    #Checks flag status
+    check_flags()
 
     if pushNotifications_is_enabled:
         if simplePush_isEnabled:
