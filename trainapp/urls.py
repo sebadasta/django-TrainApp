@@ -33,5 +33,6 @@ urlpatterns = [
     path('action_Search', views.action_Search, name ='stationInfo'),
   path('tw_feed', views.tw_feed, name ='tw_feed'),
   path('alexa_skill', my_skill_view, name='index'),
+  path('start_cron', views.start_cron, name='index'),
 
 ]

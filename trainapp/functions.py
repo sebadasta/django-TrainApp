@@ -3,6 +3,7 @@ from urllib import request, parse
 import xmltodict
 from datetime import datetime, timedelta
 from trainapp.twitterFunc import *
+from trainapp.pushNotifications import *
 import re
 import os
 
@@ -89,8 +90,6 @@ def checkDartIssues():
   TW_SEARCH_RELEVANT_STRING = "" if TW_SEARCH_RELEVANT_STRING is None else TW_SEARCH_RELEVANT_STRING
   TW_SEARCH_NON_RELEVANT_STRING = "" if TW_SEARCH_NON_RELEVANT_STRING is None else TW_SEARCH_NON_RELEVANT_STRING
   
-  PUSH_KEY = os.environ.get("PUSH_KEY")
-  PUSH_URL = os.environ.get("PUSH_URL")
   
   sendPushNotification = False
   matchedText = ""
@@ -113,11 +112,7 @@ def checkDartIssues():
 
   if sendPushNotification:
     
-    data = parse.urlencode({'key': PUSH_KEY, 'title': 'Train Alert!', 'msg': matchedText, 'event': 'Dart Issue'}).encode()
-      
-    req = request.Request(PUSH_URL, data=data)
-      
-    request.urlopen(req)
+    send_PushNotification(matchedText)
     
     print("Notification Sent \n")
     print("For Text: /n")
@@ -166,4 +161,3 @@ def Alexa_StationInfo_createSpeech(data):
              "el tren " + lastLocation + ". "
   
   return speech
-  

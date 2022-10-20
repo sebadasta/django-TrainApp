@@ -8,7 +8,7 @@ from scheduler import *
 
 
 def index(request):
-   startScheduler()
+   #startScheduler()
    #checkDartIssues()
    return render(request, "index.html")
 
@@ -51,3 +51,8 @@ def tw_feed(request):
      tweet["created_at"] = dateFormatter(tweet["created_at"])
 
  return render(request,"tw_feed.html",{"tweets": tweets['data']})
+
+def start_cron(request):
+   startScheduler()
+   return render(request, "index.html")
+  
