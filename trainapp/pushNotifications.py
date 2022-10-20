@@ -33,6 +33,8 @@ def send_PushNotification(matchedText):
 
     #Checks flag status
     check_flags()
+    print(pushNotifications_is_enabled)
+    print(simplePush_isEnabled)
 
     if pushNotifications_is_enabled:
         if simplePush_isEnabled:
