@@ -28,9 +28,6 @@ def send_PushNotification(matchedText):
     # Check if enable_notifications is enabled
     pushNotifications_is_enabled = flags.is_feature_enabled("enable_notifications")
     simplePush_isEnabled = flags.is_feature_enabled("enable_simplepush")
-    
-    print(pushNotifications_is_enabled)
-    print(simplePush_isEnabled)
 
     if pushNotifications_is_enabled:
         if simplePush_isEnabled:
