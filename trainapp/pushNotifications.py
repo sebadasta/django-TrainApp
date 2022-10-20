@@ -24,6 +24,9 @@ PUSH_APP_KEY = os.environ.get("PUSH_APP_KEY")
 PUSH_APP_SECRET = os.environ.get("PUSH_APP_SECRET")
 
 def check_flags():
+
+    # The method below triggers a network request
+    flags = flagsmith.get_environment_flags()
     # Check if enable_notifications is enabled
     pushNotifications_is_enabled = flags.is_feature_enabled("enable_notifications")
     simplePush_isEnabled = flags.is_feature_enabled("enable_simplepush")
