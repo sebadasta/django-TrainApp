@@ -17,5 +17,6 @@ def scheduled_job():
 def startScheduler():
     
   if sched.state != 1:
+    print("Starting Sched jobs")
     sched.start()
   
