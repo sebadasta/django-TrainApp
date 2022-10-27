@@ -8,7 +8,6 @@ import re
 import os
 
 Station_URL = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode="
-#Station_URL="http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc="
 
 search_URL = "http://api.irishrail.ie/realtime/realtime.asmx/getStationsFilterXML?StationText="
 
@@ -17,10 +16,7 @@ thisdict = {}
 cleanData = {}
 
 #gets raw data from Api
-def getAPI(station):
-  if station == None:
-    station = "KBRCK"
-
+def getAPI(station = "KBRCK"):
   response = requests.get(Station_URL + station)
 
   return xmltodict.parse(response.content)
@@ -29,10 +25,8 @@ def getAPI(station):
 #Filters Station Data (dict_data)
 def formatData(dict_data):
 
-  try:
-    
+  try:   
     data = dict_data["ArrayOfObjStationData"]["objStationData"]
-
     next_trains_inStation = [row for row in data if is_valid_Duein(row["Duein"]) <= 30]
     
   except:
@@ -90,10 +84,10 @@ def checkDartIssues():
   TW_SEARCH_RELEVANT_STRING = "" if TW_SEARCH_RELEVANT_STRING is None else TW_SEARCH_RELEVANT_STRING
   TW_SEARCH_NON_RELEVANT_STRING = "" if TW_SEARCH_NON_RELEVANT_STRING is None else TW_SEARCH_NON_RELEVANT_STRING
   
-  
   sendPushNotification = False
   matchedText = ""
   
+  #tweets is the Raw response from getTweets()
   tweets = json.loads(getTweets())
 
   for tweet in tweets['data'][:2]:
