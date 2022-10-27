@@ -90,6 +90,10 @@ def checkDartIssues():
   #tweets is the Raw response from getTweets()
   tweets = json.loads(getTweets())
 
+  #Searchs for relevant info in the Tweets and updates vars sendPushNotification, matchedText
+  sendPushNotification, matchedText = getRelevantTweet(tweets, TW_SEARCH_RELEVANT_STRING, TW_SEARCH_NON_RELEVANT_STRING)
+  
+  """
   for tweet in tweets['data'][:2]:
     
     tweet["created_at"] = dateFormatter(tweet["created_at"])
@@ -103,7 +107,13 @@ def checkDartIssues():
       sendPushNotification = True
       matchedText = tweet["text"]
       break
+  """
 
+
+  #Needs to send Push Notification?
+  needsPushNotification(sendPushNotification, matchedText)
+  
+  """
   if sendPushNotification:
     
     send_PushNotification(matchedText)
@@ -114,7 +124,7 @@ def checkDartIssues():
     
   else:
     print("No Notification Sent")
-      
+  """    
     
   
 def Alexa_getStationInfo(slot):
@@ -155,3 +165,35 @@ def Alexa_StationInfo_createSpeech(data):
              "el tren " + lastLocation + ". "
   
   return speech
+
+
+def needsPushNotification(sendPushNotification, matchedText):
+
+  if sendPushNotification:
+
+    send_PushNotification(matchedText)
+    
+    print("Notification Sent \n")
+    print("For Text: /n")
+    print(matchedText)
+    
+  else:
+    print("No Notification Sent")
+
+
+
+def getRelevantTweet(tweets, TW_SEARCH_RELEVANT_STRING, TW_SEARCH_NON_RELEVANT_STRING, sendPushNotification = False, matchedText = ""):
+  for tweet in tweets['data'][:2]:
+    
+    tweet["created_at"] = dateFormatter(tweet["created_at"])
+
+    importantText = re.search("\W*("+TW_SEARCH_RELEVANT_STRING+")\W*", tweet["text"], re.IGNORECASE)
+    notRelevantText = re.search("\W*("+TW_SEARCH_NON_RELEVANT_STRING+")\W*", tweet["text"], re.IGNORECASE)
+
+    
+    if tweet["created_at"] > datetime.now() - timedelta(minutes=10) and importantText is not None and notRelevantText is None:
+      
+      sendPushNotification = True
+      matchedText = tweet["text"]
+      break
+  return (sendPushNotification, matchedText)
